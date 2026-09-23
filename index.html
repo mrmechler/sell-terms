@@ -1,0 +1,336 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#ffffff">
+<meta name="description" content="Compare seller financing with a traditional mortgage, or estimate a monthly payment and home price from your budget.">
+<title>Home Financing Studio</title>
+<style>
+:root{--navy:#100b28;--ink:#26243a;--muted:#6e7080;--line:#e8e8ec;--soft:#f7f7f8;--blue:#7388ca;--light:#d3ddf1;--tax:#a2b4da;--insurance:#d4cce3;--hoa:#d8d8dd;--pmi:#e6bba9}
+*{box-sizing:border-box}[hidden]{display:none!important}html{scroll-behavior:smooth}body{margin:0;background:#fff;color:var(--ink);font:16px/1.45 -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;font-variant-numeric:tabular-nums}button,input,select{font:inherit}button{cursor:pointer}main{max-width:1216px;padding:0 38px 72px;margin:auto}
+header{height:83px;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;gap:20px}.brand{color:var(--navy);font-size:16px;font-weight:740;letter-spacing:-.035em}.brand span{color:#aaabb3;font-weight:400;margin:0 8px}.header-right{color:var(--muted);font-size:13px}.hero{padding:48px 0 34px;max-width:730px}h1{color:var(--navy);font-size:clamp(40px,5vw,64px);font-weight:620;line-height:1.04;letter-spacing:-.058em;margin:0 0 17px}.hero p{font-size:17px;color:var(--muted);line-height:1.55;margin:0;max-width:620px}
+.mode-picker{display:inline-flex;align-items:center;gap:5px;padding:4px;background:var(--soft);border:1px solid var(--line);border-radius:11px;margin-bottom:25px}.mode-picker button{border:0;background:transparent;border-radius:8px;padding:9px 16px;min-height:40px;font-size:13px;color:var(--muted);font-weight:620}.mode-picker button.active{background:white;color:var(--navy);box-shadow:0 1px 5px #100b2815}.mode-picker button:focus-visible{outline:2px solid var(--blue);outline-offset:2px}.rate-link{color:var(--navy);text-decoration:underline;text-underline-offset:3px}.rate-link:hover{color:#5169a3}.afford-status{color:#f0c3ac;font-size:12px;line-height:1.5;margin:12px 0 0}.wide-metric{grid-column:1/-1;border-bottom:1px solid #403a52;padding-bottom:17px}.result-metrics .wide-metric strong{font-size:22px}
+.eyeline{display:flex;align-items:center;gap:12px;color:#8a8c99;font-size:12px;font-weight:650;letter-spacing:.08em;text-transform:uppercase;margin-bottom:14px}.eyeline:before{content:"";width:20px;height:1px;background:#a9aab3}.text-button{border:0;background:none;padding:0;color:var(--navy);font-weight:640;font-size:12px;text-decoration:underline;text-underline-offset:4px}.text-button:hover{color:#526bb0}.text-button:focus-visible,.action-button:focus-visible{outline:2px solid var(--blue);outline-offset:3px}
+.workspace{display:grid;grid-template-columns:minmax(0,1fr) minmax(380px,.96fr);gap:52px;align-items:start}.inputs{padding-top:2px}.section-heading{display:flex;align-items:baseline;gap:12px;margin:0 0 20px}.section-heading h2{font-size:20px;letter-spacing:-.035em;font-weight:660;color:var(--navy);margin:0}.section-heading span{color:#a0a0aa;font-size:13px}.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px 16px}.field{min-width:0}.field.wide{grid-column:1/-1}label{display:block;font-size:13px;color:#47475a;font-weight:620;margin-bottom:8px}.input{min-height:57px;border:1px solid #dbdce3;border-radius:12px;display:flex;align-items:center;background:#fff;overflow:hidden;transition:border-color .15s,box-shadow .15s}.input:focus-within{border-color:#7489c9;box-shadow:0 0 0 3px #7489c921}.input .prefix{padding-left:16px;color:#8d8e9c}.input .suffix{padding-right:16px;color:#8d8e9c;white-space:nowrap;font-size:14px}.input input,.input select{min-width:0;width:100%;border:0;outline:0;background:transparent;color:var(--navy);padding:14px 16px;font-size:17px;font-weight:560;appearance:textfield}.input input::-webkit-inner-spin-button,.input input::-webkit-outer-spin-button{-webkit-appearance:none;margin:0}.input .prefix+input{padding-left:7px}.input input:has(+.suffix){padding-right:5px}.input select{height:55px;cursor:pointer;appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%238d8e9c' stroke-width='2'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 16px center}.duo{display:grid;grid-template-columns:1.1fr 1fr;gap:12px}.unit-toggle{display:flex;gap:2px;margin-right:7px;padding:3px;background:#f0f0f3;border-radius:9px;flex:none}.unit-toggle button{width:42px;height:37px;padding:0;border:0;border-radius:7px;background:transparent;color:#727381;font-size:15px;font-weight:650}.unit-toggle button.active{background:#fff;color:var(--navy);box-shadow:0 1px 4px #100b2817}.unit-toggle button:focus-visible{outline:2px solid #7489c9;outline-offset:1px}.detail{font-size:12px;color:var(--muted);line-height:1.5;margin:8px 0 0}.rule{border:0;border-top:1px solid var(--line);margin:35px 0 30px}.micro{display:block;color:#8c8e9a;font-size:12px;margin-top:15px;line-height:1.55}
+.result{background:var(--navy);color:#fff;border-radius:23px;padding:36px 38px 31px;box-shadow:0 16px 38px #100b2810}.result-eyebrow{color:#c3c0d2;font-size:13px;font-weight:600;margin:0 0 9px}.amount{font-size:clamp(44px,5vw,68px);letter-spacing:-.069em;font-weight:630;line-height:1.08;margin:0;white-space:nowrap}.amount .per{font-size:17px;letter-spacing:0;font-weight:400;color:#c3c0d2;margin-left:5px}.result-sub{color:#c3c0d2;font-size:13px;margin:12px 0 31px}.stack{height:9px;display:flex;gap:3px;overflow:hidden;border-radius:99px;background:#373147}.stack span{height:100%;min-width:0;transition:width .25s}.stack span:first-child{border-radius:99px 0 0 99px}.stack span:last-child{border-radius:0 99px 99px 0}.breakdown{margin:17px 0 0}.break-row{display:flex;align-items:center;gap:12px;margin:13px 0;font-size:14px}.swatch{width:9px;height:9px;border-radius:50%;flex:none}.break-row .label{color:#d3d0de;flex:1}.break-row strong{font-size:14px;font-weight:570}.result-rule{height:1px;background:#403a52;margin:26px 0 22px}.result-metrics{display:grid;grid-template-columns:1fr 1fr;gap:19px}.result-metrics span{display:block;color:#bdb9cf;font-size:12px;margin-bottom:7px}.result-metrics strong{font-size:21px;font-weight:570;letter-spacing:-.04em}.result-note{font-size:12px;line-height:1.55;color:#bdb9cf;margin:24px 0 0}
+footer{border-top:1px solid var(--line);margin-top:67px;padding-top:24px;color:var(--muted);font-size:12px;line-height:1.65;max-width:100%}footer p{margin:0;max-width:850px}
+.compare-shared{display:flex;align-items:center;gap:18px;padding:20px 25px;border:1px solid var(--line);border-radius:17px;margin-bottom:24px}.compare-shared .field{width:min(280px,100%);flex:none}.compare-shared .detail{margin:0}.property-details{flex:1;min-width:0}.property-details summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:16px;padding:13px 2px;font-size:13px;color:var(--navy);font-weight:630}.property-details summary::-webkit-details-marker{display:none}.property-details summary:focus-visible{outline:2px solid var(--blue);outline-offset:2px}.property-details summary:after{content:"+";font-size:20px;font-weight:350;color:var(--muted)}.property-details[open] summary:after{content:"−"}.property-details summary span{display:block;color:var(--muted);font-weight:450;font-size:12px}.property-fields{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;border-top:1px solid var(--line);padding-top:20px;margin-top:7px}.property-fields .detail{grid-column:1/-1}.compare-shared:has(.property-details[open]){display:block}.compare-shared:has(.property-details[open])>.field{margin-bottom:16px}.compare-columns{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:19px}.finance-card{border:1px solid var(--line);border-radius:21px;padding:31px 30px 27px;min-width:0;background:white}.finance-card.seller{background:#fff;border-color:#c6c4d0}.finance-head{display:flex;justify-content:space-between;align-items:start;gap:12px;margin-bottom:24px}.finance-head h2{margin:0;color:var(--navy);font-size:26px;letter-spacing:-.04em;font-weight:660}.finance-head p{color:var(--muted);font-size:13px;margin:4px 0 0}.finance-index{color:#a2a1aa;font-size:12px;margin-top:6px}.finance-amount{color:var(--navy);font-size:clamp(40px,4.2vw,58px);letter-spacing:-.065em;font-weight:650;line-height:1.05;white-space:nowrap}.finance-amount small{font-size:16px;font-weight:450;letter-spacing:0;color:var(--muted)}.finance-caption{color:var(--muted);font-size:12px;margin:8px 0 21px}.finance-rows{border-top:1px solid #dedee3;border-bottom:1px solid #dedee3;padding:9px 0}.finance-row{display:flex;justify-content:space-between;gap:15px;font-size:13px;margin:9px 0}.finance-row span{color:var(--muted)}.finance-row strong{color:var(--navy);font-weight:640}.finance-fields{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:17px 13px;margin-top:24px}.finance-fields .wide{grid-column:1/-1}.finance-fields .input{min-height:51px}.finance-fields .input input,.finance-fields .input select{font-size:15px;padding-top:11px;padding-bottom:11px}.finance-fields .input select{height:49px}.finance-fields label{font-size:12px}.balloon-info{border-top:1px solid #dedee3;margin-top:25px;padding-top:19px;display:flex;justify-content:space-between;align-items:baseline;gap:16px}.balloon-info span{font-size:13px;color:var(--muted)}.balloon-info strong{font-size:21px;letter-spacing:-.04em;color:var(--navy)}.balloon-foot{font-size:12px;color:var(--muted);line-height:1.55;margin:8px 0 0}.compare-foot{font-size:12px;color:var(--muted);line-height:1.6;margin:19px 0 0}.compare-foot a{color:var(--navy);text-underline-offset:3px}
+.decision-strip{background:var(--navy);border-radius:19px;color:#fff;padding:23px 27px 25px;margin-bottom:23px}.decision-top{display:flex;justify-content:space-between;gap:15px;align-items:center;margin-bottom:17px}.decision-top span{font-size:12px;font-weight:650;color:#c7c3d7}.decision-top button{color:#ddd9eb;text-decoration-color:#85819b}.decision-metrics{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0}.decision-metric{padding:0 23px;border-left:1px solid #484159;min-width:0}.decision-metric:first-child{border:0;padding-left:0}.decision-metric strong{font-size:clamp(24px,3vw,37px);letter-spacing:-.055em;line-height:1.12;display:block;font-weight:610}.decision-metric span{display:block;color:#c8c4d5;font-size:12px;margin-top:8px;line-height:1.45}.decision-metric button{display:block;color:#e6e3ee;margin-top:10px;text-decoration-color:#888297}.detail-panel{border-top:1px solid var(--line);margin-top:33px;padding-top:8px}.detail-panel summary{cursor:pointer;list-style:none;display:flex;align-items:center;justify-content:space-between;gap:20px;font-weight:640;color:var(--navy);padding:16px 0}.detail-panel summary::-webkit-details-marker{display:none}.detail-panel summary:after{content:"+";font-weight:350;font-size:22px}.detail-panel[open] summary:after{content:"−"}.detail-panel summary:focus-visible{outline:2px solid var(--blue)}.detail-panel summary small{color:var(--muted);font-size:12px;font-weight:450}.detail-panel .panel-body{padding:10px 0 24px}.cost-columns{display:grid;grid-template-columns:1fr 1fr;gap:20px}.cost-column{border:1px solid var(--line);border-radius:13px;padding:19px}.cost-column h3{margin:0 0 15px;font-size:15px;color:var(--navy)}.cost-column .grid{gap:13px}.cost-column .field label{font-size:12px}.cost-column .input{min-height:50px}.cost-column .input input{font-size:15px;padding-top:10px;padding-bottom:10px}.cost-note{color:var(--muted);font-size:12px;line-height:1.55;margin:12px 0 0}#creditWarning{color:#965b36;font-weight:630}.compare-actions{display:flex;align-items:center;gap:21px;flex-wrap:wrap;margin-top:28px}.action-button{border:1px solid var(--navy);border-radius:10px;background:white;color:var(--navy);padding:11px 18px;font-size:13px;font-weight:680}.action-button:hover{background:var(--soft)}.action-status{font-size:12px;color:var(--muted)}
+@media(max-width:1000px){.finance-card{padding:25px 23px}.finance-fields{grid-template-columns:1fr}.finance-fields .wide{grid-column:auto}.property-fields{grid-template-columns:repeat(2,minmax(0,1fr))}.property-fields .detail{grid-column:1/-1}}
+@media(max-width:900px){main{padding:0 25px 60px}.workspace{gap:29px;grid-template-columns:minmax(0,1fr) minmax(350px,.95fr)}.result{padding:29px 26px}.amount{font-size:49px}}
+@media(max-width:760px){.hero{padding:50px 0 38px}.workspace,.compare-columns,.cost-columns{grid-template-columns:1fr}.workspace{gap:32px}.result{order:2}.amount{font-size:clamp(44px,9vw,63px)}.finance-fields{grid-template-columns:repeat(2,minmax(0,1fr))}.decision-strip{padding:23px}.decision-metric{padding:0 12px}}
+@media(max-width:460px){main{padding:0 20px 50px}header{height:70px}.header-right{font-size:11px}.hero{padding:45px 0 33px}.hero p{font-size:15px}.mode-picker{display:flex;width:100%;gap:2px}.mode-picker button{flex:1;padding:9px 4px;font-size:11px}.grid{gap:17px 12px}.grid>.field:not(.wide){grid-column:1/-1}.duo .field{grid-column:auto}.result{padding:29px 24px}.compare-shared{display:block;padding:19px}.compare-shared .field{width:100%}.property-details{margin-top:10px}.property-fields{grid-template-columns:1fr 1fr}.property-fields .field{grid-column:1/-1}.finance-card{padding:24px 21px}.finance-fields{grid-template-columns:1fr 1fr}.finance-amount{font-size:47px}.decision-metrics{grid-template-columns:1fr;gap:15px}.decision-metric,.decision-metric:first-child{padding:0 0 14px;border:0;border-bottom:1px solid #484159}.decision-metric:last-child{border:0;padding-bottom:0}.decision-metric strong{font-size:31px}.decision-metric span{margin-top:3px}.decision-metric button{margin-top:5px}.detail-panel summary small{display:none}}@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{transition:none!important}}
+</style>
+</head>
+<body>
+<main>
+<header><div class="brand">Home Financing <span>/</span> Studio</div><span class="header-right">Explore freely. No account needed.</span></header>
+<section class="hero"><div class="mode-picker" role="group" aria-label="Calculator mode"><button id="compareMode" type="button" class="active" aria-pressed="true">Compare paths</button><button id="paymentMode" type="button" aria-pressed="false">Monthly payment</button><button id="affordMode" type="button" aria-pressed="false">Affordability</button></div><div class="eyeline" id="heroEyeline">Illustrative scenario · edit any number</div><h1 id="heroTitle">The same home. Two ways forward.</h1><p id="heroDescription">See what the terms mean for your cash today, your payment each month, and the balance that could come due later. Change any number to explore.</p></section>
+<section id="compareWorkspace" aria-label="Seller financing and traditional mortgage comparison">
+<div class="compare-shared">
+ <div class="field"><label for="cmpPrice">Home price</label><div class="input"><span class="prefix">$</span><input id="cmpPrice" type="number" min="0" step="1000" inputmode="decimal" value="500000"></div></div>
+ <details class="property-details" id="propertyDetails"><summary><div>Property costs <span id="cmpPropertySummary">Taxes 1.5% · Insurance $2,400/yr · HOA $0/mo</span></div></summary><div class="property-fields"><div class="field"><label for="cmpTax">Property tax / year</label><div class="input"><input id="cmpTax" type="number" min="0" max="100" step="0.01" inputmode="decimal" value="1.5" aria-label="Property tax rate per year"><div class="unit-toggle" role="group" aria-label="Comparison property tax format"><button id="cmpTaxPct" class="active" type="button" aria-pressed="true">%</button><button id="cmpTaxDollars" type="button" aria-pressed="false">$</button></div></div></div><div class="field"><label for="cmpInsurance">Insurance / year</label><div class="input"><span class="prefix">$</span><input id="cmpInsurance" type="number" min="0" step="100" inputmode="decimal" value="2400"></div></div><div class="field"><label for="cmpHoa">HOA / month</label><div class="input"><span class="prefix">$</span><input id="cmpHoa" type="number" min="0" step="10" inputmode="decimal" value="0"></div></div><p class="detail">These costs apply equally to both paths. A tax percentage estimates the bill from the home price; your actual taxable value may differ.</p></div></details>
+</div>
+<div class="decision-strip" aria-live="polite"><div class="decision-top"><span>WITH THESE TERMS, SELLER FINANCING HAS</span><button id="resetExample" type="button" class="text-button">Reset example</button></div><div class="decision-metrics"><div class="decision-metric"><strong id="tradeCash">$0</strong><span id="tradeCashLabel">less down payment</span><button id="sameDown" type="button" class="text-button">Try the same down payment</button></div><div class="decision-metric"><strong id="tradeMonthly">$0</strong><span id="tradeMonthlyLabel">more per month</span></div><div class="decision-metric"><strong id="tradeBalloon">$0</strong><span id="tradeBalloonLabel">due in year 5</span><button id="removeBalloon" type="button" class="text-button">See it without a balloon</button></div></div></div>
+<div class="compare-columns">
+ <article class="finance-card seller" aria-label="Seller financing example">
+  <div class="finance-head"><div><h2>Seller financing</h2><p>Terms negotiated with the seller</p></div><span class="finance-index">01</span></div>
+  <div class="finance-amount"><span id="cmpSellerMonthly">$0</span><small> / month</small></div><p class="finance-caption">Estimated total monthly payment</p>
+  <div class="finance-rows"><div class="finance-row"><span>Principal & interest</span><strong id="cmpSellerPI">$0</strong></div><div class="finance-row"><span>Taxes, insurance & HOA</span><strong id="cmpSellerExtras">$0</strong></div><div class="finance-row"><span>Down payment</span><strong id="cmpSellerDownSummary">$0</strong></div><div class="finance-row" id="cmpSellerCashRow" hidden><span>Est. cash incl. entered costs</span><strong id="cmpSellerCash">$0</strong></div></div>
+  <div class="finance-fields">
+   <div class="field wide"><label for="cmpSellerDown">Down payment</label><div class="input"><input id="cmpSellerDown" type="number" min="0" max="100" step="0.1" inputmode="decimal" value="10" aria-label="Seller financing down payment percent"><div class="unit-toggle" role="group" aria-label="Seller financing down payment format"><button id="cmpSellerDownPct" class="active" type="button" aria-pressed="true">%</button><button id="cmpSellerDownDollars" type="button" aria-pressed="false">$</button></div></div></div>
+   <div class="field"><label for="cmpSellerRate">Interest rate</label><div class="input"><input id="cmpSellerRate" type="number" min="0" max="100" step="0.01" inputmode="decimal" value="5.5"><span class="suffix">%</span></div></div>
+   <div class="field"><label for="cmpSellerAmort">Amortization</label><div class="input"><select id="cmpSellerAmort"><option value="30">30 years</option><option value="25">25 years</option><option value="20">20 years</option><option value="15">15 years</option><option value="10">10 years</option></select></div></div>
+   <div class="field wide"><label for="cmpSellerBalloon">Balloon due after</label><div class="input"><select id="cmpSellerBalloon"><option value="0">No balloon</option><option value="3">3 years</option><option value="5" selected>5 years</option><option value="7">7 years</option><option value="10">10 years</option><option value="15">15 years</option></select></div></div>
+  </div>
+  <div class="balloon-info"><span id="cmpBalloonLabel">Balance due in year 5</span><strong id="cmpBalloonAmount">$0</strong></div><p class="balloon-foot" id="cmpBalloonFoot">This balance would need to be paid or refinanced when the balloon comes due.</p>
+ </article>
+ <article class="finance-card traditional" aria-label="Traditional mortgage example">
+  <div class="finance-head"><div><h2>Traditional mortgage</h2><p>Terms from a mortgage lender</p></div><span class="finance-index">02</span></div>
+  <div class="finance-amount"><span id="cmpTradMonthly">$0</span><small> / month</small></div><p class="finance-caption">Estimated total monthly payment</p>
+  <div class="finance-rows"><div class="finance-row"><span>Principal & interest</span><strong id="cmpTradPI">$0</strong></div><div class="finance-row"><span>Taxes, insurance & HOA</span><strong id="cmpTradExtras">$0</strong></div><div class="finance-row" id="cmpTradPmiRow" hidden><span>Mortgage insurance</span><strong id="cmpTradPmiSummary">$0</strong></div><div class="finance-row"><span>Down payment</span><strong id="cmpTradDownSummary">$0</strong></div><div class="finance-row" id="cmpTradCashRow" hidden><span>Est. cash incl. entered costs</span><strong id="cmpTradCash">$0</strong></div></div>
+  <div class="finance-fields">
+   <div class="field wide"><label for="cmpTradDown">Down payment</label><div class="input"><input id="cmpTradDown" type="number" min="0" max="100" step="0.1" inputmode="decimal" value="20" aria-label="Traditional mortgage down payment percent"><div class="unit-toggle" role="group" aria-label="Traditional mortgage down payment format"><button id="cmpTradDownPct" class="active" type="button" aria-pressed="true">%</button><button id="cmpTradDownDollars" type="button" aria-pressed="false">$</button></div></div></div>
+   <div class="field"><label for="cmpTradRate">Interest rate</label><div class="input"><input id="cmpTradRate" type="number" min="0" max="100" step="0.01" inputmode="decimal" value="6.5"><span class="suffix">%</span></div></div>
+   <div class="field"><label for="cmpTradTerm">Loan term</label><div class="input"><select id="cmpTradTerm"><option value="30">30 years</option><option value="20">20 years</option><option value="15">15 years</option><option value="10">10 years</option></select></div></div>
+   <div class="field wide"><label for="cmpTradPmi">Mortgage insurance / month</label><div class="input"><span class="prefix">$</span><input id="cmpTradPmi" type="number" min="0" step="10" inputmode="decimal" value="0"></div><p class="detail" id="cmpPmiHint" hidden>With less than 20% down, mortgage insurance may apply. Enter your lender's estimate.</p></div>
+  </div>
+  <div class="balloon-info"><span>Scheduled payoff</span><strong id="cmpTradPayoff">30 years</strong></div><p class="balloon-foot">Based on the selected fixed rate and scheduled payments.</p>
+ </article>
+</div>
+<details class="detail-panel" id="closingDetails"><summary>Explore cash at closing <small>Add closing cost estimates and credits to both paths</small></summary><div class="panel-body"><div class="cost-columns"><div class="cost-column"><h3>Seller financing</h3><div class="grid"><div class="field"><label for="cmpSellerClosing">Closing costs</label><div class="input"><span class="prefix">$</span><input id="cmpSellerClosing" type="number" min="0" step="100" inputmode="decimal" value="0"></div></div><div class="field"><label for="cmpSellerCredit">Credits toward costs</label><div class="input"><span class="prefix">$</span><input id="cmpSellerCredit" type="number" min="0" step="100" inputmode="decimal" value="0"></div></div></div></div><div class="cost-column"><h3>Traditional mortgage</h3><div class="grid"><div class="field"><label for="cmpTradClosing">Closing costs</label><div class="input"><span class="prefix">$</span><input id="cmpTradClosing" type="number" min="0" step="100" inputmode="decimal" value="0"></div></div><div class="field"><label for="cmpTradCredit">Credits toward costs</label><div class="input"><span class="prefix">$</span><input id="cmpTradCredit" type="number" min="0" step="100" inputmode="decimal" value="0"></div></div></div></div></div><p class="cost-note">Estimated upfront cash = down payment + entered closing costs − credits applied to those costs. Actual eligibility and limits depend on the transaction.</p><p class="cost-note" id="creditWarning" role="status" hidden>Credits above entered closing costs are not applied to the down payment in this estimate.</p></div></details>
+<div class="compare-actions"><button id="copyComparison" type="button" class="action-button">Copy this comparison</button><span id="copyStatus" class="action-status" role="status">A summary you can share with a buyer, seller, or lender.</span></div>
+<p class="compare-foot">Starting terms are examples, not offers. <a href="https://www.mortgagenewsdaily.com/mortgage-rates/mnd" target="_blank" rel="noopener noreferrer">See MND’s daily rate index ↗</a> for a national benchmark, then enter actual terms from a seller and lender. Monthly estimates exclude utilities and maintenance. A balloon balance must be addressed when due, and refinancing is not guaranteed. <a href="https://www.consumerfinance.gov/ask-cfpb/what-is-a-balloon-payment-when-is-one-allowed-en-104/" target="_blank" rel="noopener noreferrer">Learn about balloon payments ↗</a></p>
+</section>
+<div class="workspace" id="singleWorkspace" hidden>
+<section class="inputs" aria-label="Mortgage assumptions">
+<div class="section-heading"><h2>Purchase details</h2><span>01 / 02</span></div>
+<div class="grid">
+<div class="field wide" id="priceField"><label for="price">Home price</label><div class="input"><span class="prefix">$</span><input id="price" type="number" min="0" step="1000" inputmode="decimal" value="500000"></div></div>
+<div class="field wide" id="targetField" hidden><label for="target">Monthly payment budget</label><div class="input"><span class="prefix">$</span><input id="target" type="number" min="0" step="50" inputmode="decimal" value="3500"></div><p class="detail">Your target includes principal, interest, taxes, insurance, HOA and mortgage insurance.</p></div>
+<div class="field wide"><label for="down">Down payment</label><div class="duo"><div class="input"><span class="prefix">$</span><input id="down" type="number" min="0" step="1000" inputmode="decimal" value="100000" aria-label="Down payment in dollars"></div><div class="input"><input id="downPct" type="number" min="0" max="100" step="0.1" inputmode="decimal" value="20" aria-label="Down payment percentage"><span class="suffix">%</span></div></div></div>
+<div class="field"><label for="rate">Interest rate</label><div class="input"><input id="rate" type="number" min="0" max="100" step="0.01" inputmode="decimal" value="6.5"><span class="suffix">%</span></div></div>
+<div class="field"><label for="term">Loan term</label><div class="input"><select id="term"><option value="30">30 years</option><option value="20">20 years</option><option value="15">15 years</option><option value="10">10 years</option></select></div></div>
+</div>
+<p class="micro">The opening rate is an example. <a class="rate-link" href="https://www.mortgagenewsdaily.com/mortgage-rates/mnd" target="_blank" rel="noopener noreferrer">See MND’s daily rate index ↗</a> and enter a rate that fits your scenario, ideally a lender quote.</p>
+<hr class="rule">
+<div class="section-heading"><h2>Taxes & other costs</h2><span>02 / 02</span></div>
+<div class="grid">
+<div class="field wide"><label for="taxValue">Property tax / year</label><div class="input"><input id="taxValue" type="number" min="0" max="100" step="0.01" inputmode="decimal" value="1.5" aria-label="Annual property tax percentage"><div class="unit-toggle" role="group" aria-label="Property tax input format"><button id="taxPercent" class="active" type="button" aria-pressed="true">%</button><button id="taxDollars" type="button" aria-pressed="false">$</button></div></div><p class="detail" id="taxHelp">Calculated from the home price. Switch to dollars if you have the annual tax amount.</p></div>
+<div class="field"><label for="insurance">Home insurance / year</label><div class="input"><span class="prefix">$</span><input id="insurance" type="number" min="0" step="100" inputmode="decimal" value="2400"></div></div>
+<div class="field"><label for="hoa">HOA / month</label><div class="input"><span class="prefix">$</span><input id="hoa" type="number" min="0" step="10" inputmode="decimal" value="0"></div></div>
+<div class="field"><label for="pmi">Mortgage insurance / month</label><div class="input"><span class="prefix">$</span><input id="pmi" type="number" min="0" step="10" inputmode="decimal" value="0"></div><p class="detail" id="pmiHint" hidden>With less than 20% down, mortgage insurance may apply. Enter a lender estimate.</p></div>
+</div>
+</section>
+<aside class="result" aria-label="Calculation result" aria-live="polite">
+<p class="result-eyebrow" id="resultHeading">Your estimated monthly payment</p><p class="amount"><span id="payment">$0</span><span class="per" id="resultUnit">/ mo</span></p><p class="result-sub" id="resultSub">Including estimated taxes and other costs</p><p class="afford-status" id="affordStatus" hidden></p>
+<div class="stack" id="stack" role="img" aria-label="Payment composition"></div><div class="breakdown" id="breakdown"></div>
+<div class="result-rule"></div><div class="result-metrics"><div id="computedPaymentMetric" class="wide-metric" hidden><span>Estimated monthly payment</span><strong id="computedPayment">$0</strong></div><div><span>Loan amount</span><strong id="loan">$0</strong></div><div><span>Down payment</span><strong id="downSummary">$0</strong></div></div>
+<p class="result-note" id="resultNote">The payment above is an estimate. A lender can provide your actual loan terms and payment.</p>
+</aside>
+</div>
+<footer><p>For planning only. Monthly affordability is based on the payment budget you enter; it does not assess income, debts, credit or lender eligibility. Taxes based on the purchase price may differ from the property's taxable value, and exemptions may affect the actual bill. Monthly estimates exclude utilities, maintenance, special assessments and changes in taxes, insurance or mortgage insurance. Optional upfront figures include only costs and credits entered. It is not a loan quote or preapproval.</p></footer>
+</main>
+<script>
+(()=>{
+const ids=['price','target','down','downPct','rate','term','taxValue','insurance','hoa','pmi'];
+const fields=Object.fromEntries(ids.map(id=>[id,document.getElementById(id)]));
+const output=id=>document.getElementById(id);
+const fmt=n=>new Intl.NumberFormat('en-US',{style:'currency',currency:'USD',maximumFractionDigits:0}).format(Number.isFinite(n)?n:0);
+const num=id=>Math.max(0,Number(fields[id].value)||0);
+const colors={pi:'#e7ebf7',tax:'#a2b4da',insurance:'#d4cce3',hoa:'#b2acc0',pmi:'#e6bba9'};
+const labels={pi:'Principal & interest',tax:'Property taxes',insurance:'Home insurance',hoa:'HOA',pmi:'Mortgage insurance'};
+let downMode='dollars',taxMode='percent',mode='compare';
+const cmpIds=['cmpPrice','cmpTax','cmpInsurance','cmpHoa','cmpSellerDown','cmpSellerRate','cmpSellerAmort','cmpSellerBalloon','cmpTradDown','cmpTradRate','cmpTradTerm','cmpTradPmi','cmpSellerClosing','cmpSellerCredit','cmpTradClosing','cmpTradCredit'];
+const cmp=Object.fromEntries(cmpIds.map(id=>[id,output(id)]));
+let cmpTaxMode='percent',sellerDownMode='percent',tradDownMode='percent';
+const cmpNum=id=>Math.max(0,Number(cmp[id].value)||0);
+function annualTax(price){return taxMode==='percent'?price*num('taxValue')/100:num('taxValue')}
+function setTaxMode(mode){
+ if(mode===taxMode)return;
+ const price=num('price'),current=num('taxValue');
+ fields.taxValue.value=mode==='dollars'?+(price*current/100).toFixed(2):(price?+(current/price*100).toFixed(4):0);
+ taxMode=mode;
+ const percent=mode==='percent';
+ fields.taxValue.step=percent?'0.01':'100';
+ fields.taxValue.max=percent?'100':'';
+ fields.taxValue.setAttribute('aria-label',percent?'Annual property tax percentage':'Annual property tax amount in dollars');
+ output('taxPercent').classList.toggle('active',percent);
+ output('taxDollars').classList.toggle('active',!percent);
+ output('taxPercent').setAttribute('aria-pressed',String(percent));
+ output('taxDollars').setAttribute('aria-pressed',String(!percent));
+ output('taxHelp').textContent=percent?'Calculated from the home price. Switch to dollars if you have the annual tax amount.':'Annual tax amount. Switch to percentage to estimate it from the home price.';
+ render('taxMode');
+}
+function payment(principal,rate,months){if(!principal||!months)return 0;const r=rate/1200;return r===0?principal/months:principal*r/(1-Math.pow(1+r,-months))}
+function comparisonDown(side,price){
+ const input=side==='Seller'?'cmpSellerDown':'cmpTradDown';
+ const asPercent=side==='Seller'?sellerDownMode==='percent':tradDownMode==='percent';
+ return asPercent?price*Math.min(cmpNum(input),100)/100:Math.min(cmpNum(input),price);
+}
+function comparisonBalance(loan,pi,rate,months){
+ let balance=loan,r=rate/1200;
+ for(let i=0;i<months;i++)balance=Math.max(0,balance*(1+r)-pi);
+ return balance;
+}
+function renderComparison(){
+ const price=cmpNum('cmpPrice');
+ const tax=cmpTaxMode==='percent'?price*cmpNum('cmpTax')/1200:cmpNum('cmpTax')/12;
+ const shared=tax+cmpNum('cmpInsurance')/12+cmpNum('cmpHoa');
+ const sellerDown=comparisonDown('Seller',price),tradDown=comparisonDown('Trad',price);
+ const sellerLoan=price-sellerDown,tradLoan=price-tradDown;
+ const sellerPI=payment(sellerLoan,cmpNum('cmpSellerRate'),cmpNum('cmpSellerAmort')*12);
+ const tradPI=payment(tradLoan,cmpNum('cmpTradRate'),cmpNum('cmpTradTerm')*12);
+ const sellerTotal=sellerPI+shared,tradTotal=tradPI+shared+cmpNum('cmpTradPmi');
+ output('cmpSellerMonthly').textContent=fmt(sellerTotal);
+ output('cmpTradMonthly').textContent=fmt(tradTotal);
+ output('cmpSellerPI').textContent=fmt(sellerPI);
+ output('cmpTradPI').textContent=fmt(tradPI);
+ output('cmpSellerExtras').textContent=fmt(shared);
+ output('cmpTradExtras').textContent=fmt(shared);
+ output('cmpTradPmiRow').hidden=cmpNum('cmpTradPmi')===0;
+ output('cmpTradPmiSummary').textContent=fmt(cmpNum('cmpTradPmi'));
+ output('cmpSellerDownSummary').textContent=fmt(sellerDown);
+ output('cmpTradDownSummary').textContent=fmt(tradDown);
+ const hasClosingInputs=['cmpSellerClosing','cmpSellerCredit','cmpTradClosing','cmpTradCredit'].some(id=>cmpNum(id)>0);
+ const sellerCash=sellerDown+Math.max(0,cmpNum('cmpSellerClosing')-cmpNum('cmpSellerCredit'));
+ const tradCash=tradDown+Math.max(0,cmpNum('cmpTradClosing')-cmpNum('cmpTradCredit'));
+ output('cmpSellerCashRow').hidden=!hasClosingInputs;
+ output('cmpTradCashRow').hidden=!hasClosingInputs;
+ output('cmpSellerCash').textContent=fmt(sellerCash);
+ output('cmpTradCash').textContent=fmt(tradCash);
+ output('creditWarning').hidden=cmpNum('cmpSellerCredit')<=cmpNum('cmpSellerClosing')&&cmpNum('cmpTradCredit')<=cmpNum('cmpTradClosing');
+ const taxLabel=cmpTaxMode==='percent'?`${Number(cmpNum('cmpTax').toFixed(4))}%`:`${fmt(cmpNum('cmpTax'))}/yr`;
+ output('cmpPropertySummary').textContent=`Taxes ${taxLabel} · Insurance ${fmt(cmpNum('cmpInsurance'))}/yr · HOA ${fmt(cmpNum('cmpHoa'))}/mo`;
+ output('cmpTradPayoff').textContent=`${cmpNum('cmpTradTerm')} years`;
+ output('cmpPmiHint').hidden=price===0||tradDown/price>=0.2||cmpNum('cmpTradPmi')>0;
+ const balloonYears=cmpNum('cmpSellerBalloon'),amortYears=cmpNum('cmpSellerAmort');
+ const balloon=balloonYears>0&&balloonYears<amortYears?comparisonBalance(sellerLoan,sellerPI,cmpNum('cmpSellerRate'),balloonYears*12):0;
+ const hasBalloon=balloon>0.01;
+ output('cmpBalloonLabel').textContent=hasBalloon?`Balance due in year ${balloonYears}`:'Balloon payment';
+ output('cmpBalloonAmount').textContent=hasBalloon?fmt(balloon):'None';
+ output('cmpBalloonFoot').textContent=hasBalloon?'This balance would need to be paid or refinanced when the balloon comes due.':'Payments follow the selected amortization schedule without an earlier balloon.';
+ const cashDelta=(hasClosingInputs?tradCash:tradDown)-(hasClosingInputs?sellerCash:sellerDown);
+ const monthlyDelta=sellerTotal-tradTotal;
+ output('tradeCash').textContent=price===0?'—':Math.abs(cashDelta)<0.5?'Equal':fmt(Math.abs(cashDelta));
+ output('tradeCashLabel').textContent=Math.abs(cashDelta)<0.5?(hasClosingInputs?'upfront cash in both paths':'down payment in both paths'):`${cashDelta>0?'less':'more'} ${hasClosingInputs?'estimated upfront cash':'down payment'}`;
+ output('tradeMonthly').textContent=price===0?'—':Math.abs(monthlyDelta)<0.5?'Equal':fmt(Math.abs(monthlyDelta));
+ output('tradeMonthlyLabel').textContent=Math.abs(monthlyDelta)<0.5?'monthly payment in both paths':`${monthlyDelta>0?'more':'less'} per month`;
+ output('tradeBalloon').textContent=hasBalloon?fmt(balloon):'None';
+ output('tradeBalloonLabel').textContent=hasBalloon?`remaining balance due in year ${balloonYears}`:'no balloon payment in this example';
+ output('removeBalloon').hidden=!hasBalloon;
+ output('sameDown').hidden=Math.abs(tradDown-sellerDown)<0.5||price===0;
+}
+function setComparisonTaxMode(next){
+ if(next===cmpTaxMode)return;
+ const price=cmpNum('cmpPrice'),current=cmpNum('cmpTax');
+ cmp.cmpTax.value=next==='dollars'?+(price*current/100).toFixed(2):(price?+(current/price*100).toFixed(4):0);
+ cmpTaxMode=next;
+ const percent=next==='percent';
+ cmp.cmpTax.step=percent?'0.01':'100';cmp.cmpTax.max=percent?'100':'';
+ cmp.cmpTax.setAttribute('aria-label',percent?'Property tax rate per year':'Annual property tax amount in dollars');
+ for(const [id,active] of [['cmpTaxPct',percent],['cmpTaxDollars',!percent]]){
+  output(id).classList.toggle('active',active);output(id).setAttribute('aria-pressed',String(active));
+ }
+ renderComparison();
+}
+function setComparisonDownMode(side,next){
+ const key=side==='Seller'?'cmpSellerDown':'cmpTradDown';
+ const old=side==='Seller'?sellerDownMode:tradDownMode;
+ if(old===next)return;
+ const price=cmpNum('cmpPrice'),current=cmpNum(key);
+ cmp[key].value=next==='dollars'?+(price*current/100).toFixed(2):(price?+(current/price*100).toFixed(4):0);
+ if(side==='Seller')sellerDownMode=next;else tradDownMode=next;
+ const percent=next==='percent';
+ cmp[key].step=percent?'0.1':'1000';cmp[key].max=percent?'100':'';
+ cmp[key].setAttribute('aria-label',`${side==='Seller'?'Seller financing':'Traditional mortgage'} down payment ${percent?'percent':'dollars'}`);
+ for(const [id,active] of [[`cmp${side}DownPct`,percent],[`cmp${side}DownDollars`,!percent]]){
+  output(id).classList.toggle('active',active);output(id).setAttribute('aria-pressed',String(active));
+ }
+ renderComparison();
+}
+function calculate(price){
+ const down=downMode==='percent'?price*Math.min(num('downPct'),100)/100:Math.min(num('down'),price);
+ const loan=price-down,months=num('term')*12,monthlyRate=num('rate')/1200;
+ const pi=payment(loan,num('rate'),months);
+ const costs={pi,tax:annualTax(price)/12,insurance:num('insurance')/12,hoa:num('hoa'),pmi:num('pmi')};
+ return {down,loan,months,monthlyRate,pi,costs,total:Object.values(costs).reduce((sum,n)=>sum+n,0)};
+}
+function affordablePrice(){
+ const target=num('target');
+ if(calculate(0).total>target)return 0;
+ let low=0,high=Math.max(500000,num('down')+1);
+ while(calculate(high).total<=target&&high<1000000000)high*=2;
+ if(calculate(high).total<=target)return null;
+ for(let i=0;i<60;i++){
+  const mid=(low+high)/2;
+  if(calculate(mid).total<=target)low=mid;else high=mid;
+ }
+ return low;
+}
+function setMode(next){
+ if(mode===next)return;
+ mode=next;
+ if(next==='afford')downMode='percent';
+ const afford=next==='afford';
+ const comparing=next==='compare';
+ for(const [id,active] of [['compareMode',comparing],['paymentMode',next==='payment'],['affordMode',afford]]){
+  output(id).classList.toggle('active',active);output(id).setAttribute('aria-pressed',String(active));
+ }
+ output('compareWorkspace').hidden=!comparing;
+ output('singleWorkspace').hidden=comparing;
+ output('priceField').hidden=afford;
+ output('targetField').hidden=!afford;
+ output('computedPaymentMetric').hidden=!afford;
+ output('heroEyeline').textContent=comparing?'Illustrative scenario · edit any number':afford?'Start with your comfort zone':'See the full payment';
+ output('heroTitle').textContent=comparing?'The same home. Two ways forward.':afford?'What fits your life each month?':'Know your monthly number.';
+ output('heroDescription').textContent=comparing?'See what the terms mean for your cash today, your payment each month, and the balance that could come due later. Change any number to explore.':afford?'Enter a monthly payment that feels comfortable. Explore an estimated home price with taxes and other costs included.':'See the whole payment, not just the loan. Adjust the details and watch the estimate change in real time.';
+ output('resultHeading').textContent=afford?'Estimated home price for your budget':'Your estimated monthly payment';
+ output('resultUnit').hidden=afford;
+ output('resultSub').textContent=afford?'Based on your monthly target and the costs entered':'Including estimated taxes and other costs';
+ output('resultNote').textContent=afford?'A planning estimate based on your inputs. A lender can assess your actual buying power and loan terms.':'The payment above is an estimate. A lender can provide your actual loan terms and payment.';
+ if(comparing)renderComparison();else render('mode');
+}
+function render(source){
+ if(source==='downPct')downMode='percent';
+ else if(source==='down')downMode='dollars';
+ let price=mode==='afford'?affordablePrice():num('price');
+ const noFinitePrice=price===null;
+ if(noFinitePrice)price=0;
+ if(mode==='afford')fields.price.value=Math.round(price);
+ if(downMode==='percent')fields.down.value=+(price*Math.min(num('downPct'),100)/100).toFixed(2);
+ else fields.downPct.value=price?+(Math.min(num('down'),price)/price*100).toFixed(2):0;
+ const {down,loan,months,monthlyRate,pi,costs,total}=calculate(price);
+ output('payment').textContent=mode==='afford'?(noFinitePrice?'—':fmt(price)):fmt(total);
+ output('computedPayment').textContent=fmt(total);
+ const status=output('affordStatus');
+ status.hidden=mode!=='afford'||(!noFinitePrice&&!(price===0&&total>num('target')));
+ if(noFinitePrice)status.textContent='These inputs do not set a maximum home price. Try a lower down payment percentage or add a property tax rate.';
+ else if(!status.hidden)status.textContent='The fixed monthly costs entered already exceed this payment budget.';
+ output('pmiHint').hidden=price===0||down/price>=0.2||num('pmi')>0;
+ output('loan').textContent=fmt(loan);
+ output('downSummary').textContent=fmt(down);
+ const entries=Object.entries(costs).filter(([,value])=>value>0);
+ output('stack').innerHTML=entries.map(([key,value])=>`<span style="width:${value/total*100}%;background:${colors[key]}"></span>`).join('');
+ output('stack').setAttribute('aria-label',entries.map(([key,value])=>`${labels[key]} ${fmt(value)}`).join(', ')||'No payment');
+ output('breakdown').innerHTML=entries.length?entries.map(([key,value])=>`<div class="break-row"><span class="swatch" style="background:${colors[key]}"></span><span class="label">${labels[key]}</span><strong>${fmt(value)}</strong></div>`).join(''):'<div class="break-row"><span class="label">Enter a home price to begin.</span></div>';
+}
+function resetExample(){
+ const defaults={cmpPrice:500000,cmpTax:1.5,cmpInsurance:2400,cmpHoa:0,cmpSellerDown:10,cmpSellerRate:5.5,cmpSellerAmort:30,cmpSellerBalloon:5,cmpTradDown:20,cmpTradRate:6.5,cmpTradTerm:30,cmpTradPmi:0,cmpSellerClosing:0,cmpSellerCredit:0,cmpTradClosing:0,cmpTradCredit:0};
+ for(const [id,value] of Object.entries(defaults))cmp[id].value=value;
+ cmpTaxMode='percent';sellerDownMode='percent';tradDownMode='percent';
+ for(const [input,pct,dollars,label] of [['cmpTax','cmpTaxPct','cmpTaxDollars','Property tax rate per year'],['cmpSellerDown','cmpSellerDownPct','cmpSellerDownDollars','Seller financing down payment percent'],['cmpTradDown','cmpTradDownPct','cmpTradDownDollars','Traditional mortgage down payment percent']]){
+  cmp[input].step=input==='cmpTax'?'0.01':'0.1';cmp[input].max='100';cmp[input].setAttribute('aria-label',label);
+  output(pct).classList.add('active');output(pct).setAttribute('aria-pressed','true');
+  output(dollars).classList.remove('active');output(dollars).setAttribute('aria-pressed','false');
+ }
+ output('closingDetails').open=false;
+ renderComparison();
+}
+function copyComparison(){
+ const price=cmpNum('cmpPrice'),sellerDown=comparisonDown('Seller',price),tradDown=comparisonDown('Trad',price);
+ const balloonYears=cmpNum('cmpSellerBalloon'),balloon=output('cmpBalloonAmount').textContent;
+ const anyCosts=['cmpSellerClosing','cmpSellerCredit','cmpTradClosing','cmpTradCredit'].some(id=>cmpNum(id)>0);
+ const lines=[
+  `Financing comparison • ${fmt(price)} home`,
+  `Seller financing: ${output('cmpSellerMonthly').textContent}/mo | ${fmt(sellerDown)} down | ${cmpNum('cmpSellerRate')}% interest | ${cmpNum('cmpSellerAmort')}-year amortization${balloon!=='None'?` | ${balloon} balance due in year ${balloonYears}`:' | no balloon'}`,
+  `Traditional mortgage: ${output('cmpTradMonthly').textContent}/mo | ${fmt(tradDown)} down | ${cmpNum('cmpTradRate')}% interest | ${cmpNum('cmpTradTerm')}-year term${cmpNum('cmpTradPmi')?` | ${fmt(cmpNum('cmpTradPmi'))}/mo mortgage insurance`:''}`,
+  `Property costs: ${output('cmpPropertySummary').textContent}`,
+  ...(anyCosts?[`Estimated upfront cash with entered costs: seller ${output('cmpSellerCash').textContent}; traditional ${output('cmpTradCash').textContent}.`]:[]),
+  'Illustrative only. Closing costs not entered are excluded. Balloon balance must be paid or refinanced when due; refinancing is not guaranteed.'
+ ];
+ const summary=lines.join('\n');
+ const status=output('copyStatus');
+ const fallback=()=>{
+  const area=document.createElement('textarea');area.value=summary;area.style.position='fixed';area.style.opacity='0';document.body.appendChild(area);area.select();
+  const copied=document.execCommand('copy');area.remove();return copied;
+ };
+ if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(summary).then(()=>{status.textContent='Comparison copied. Ready to share.'}).catch(()=>{status.textContent=fallback()?'Comparison copied. Ready to share.':'Copy unavailable in this browser.'})}
+ else status.textContent=fallback()?'Comparison copied. Ready to share.':'Copy unavailable in this browser.';
+}
+ids.forEach(id=>fields[id].addEventListener('input',()=>render(id)));
+fields.term.addEventListener('change',()=>render('term'));
+output('taxPercent').addEventListener('click',()=>setTaxMode('percent'));
+output('taxDollars').addEventListener('click',()=>setTaxMode('dollars'));
+output('compareMode').addEventListener('click',()=>setMode('compare'));
+output('paymentMode').addEventListener('click',()=>setMode('payment'));
+output('affordMode').addEventListener('click',()=>setMode('afford'));
+cmpIds.forEach(id=>cmp[id].addEventListener('input',renderComparison));
+for(const id of ['cmpSellerAmort','cmpSellerBalloon','cmpTradTerm'])cmp[id].addEventListener('change',renderComparison);
+output('cmpTaxPct').addEventListener('click',()=>setComparisonTaxMode('percent'));
+output('cmpTaxDollars').addEventListener('click',()=>setComparisonTaxMode('dollars'));
+for(const side of ['Seller','Trad']){
+ output(`cmp${side}DownPct`).addEventListener('click',()=>setComparisonDownMode(side,'percent'));
+ output(`cmp${side}DownDollars`).addEventListener('click',()=>setComparisonDownMode(side,'dollars'));
+}
+output('resetExample').addEventListener('click',resetExample);
+output('sameDown').addEventListener('click',()=>{setComparisonDownMode('Seller','dollars');cmp.cmpSellerDown.value=+comparisonDown('Trad',cmpNum('cmpPrice')).toFixed(2);renderComparison()});
+output('removeBalloon').addEventListener('click',()=>{cmp.cmpSellerBalloon.value='0';renderComparison()});
+output('copyComparison').addEventListener('click',copyComparison);
+renderComparison();
+render();
+})();
+</script>
+</body>
+</html>
