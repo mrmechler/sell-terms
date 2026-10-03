@@ -18,8 +18,9 @@
       const buyerCosts=val(prefix+'BuyerCosts'),credit=Math.min(buyerCosts,val(prefix+'Credit'));
       const other=val(prefix+'Other'),buyerPaysBroker=$(prefix+'BrokerPayer').value==='buyer';
       const buyerCash=down+buyerCosts-credit+(buyerPaysBroker?buyerBroker:0);
-      const sellerCash=(prefix==='seller'?down:price)-sellerBroker-other-credit-lien-(buyerPaysBroker?0:buyerBroker);
-      return {down,period,buyerCosts,credit,other,buyerPaysBroker,buyerCash,sellerCash,
+      const sellingCosts=sellerBroker+other+credit+(buyerPaysBroker?0:buyerBroker);
+      const sellerCash=(prefix==='seller'?down:price)-sellingCosts-lien;
+      return {down,period,buyerCosts,credit,other,buyerPaysBroker,buyerCash,sellerCash,sellingCosts,
         monthly:period.monthly+housing+(prefix==='bank'?val('bankPmi'):0),
         financingCost:period.interest+buyerCosts-credit+(buyerPaysBroker?buyerBroker:0)+(prefix==='bank'?val('bankPmi')*period.months:0)};
     }
@@ -30,6 +31,14 @@
     const x=scenario(),s=x.seller,b=x.bank,cashDifference=b.buyerCash-s.buyerCash,monthlyDifference=b.monthly-s.monthly,costDifference=b.financingCost-s.financingCost;
     put('sellerMonthly',money(s.monthly));put('bankMonthly',money(b.monthly));
     put('sellerBuyerCash',money(s.buyerCash));put('bankBuyerCash',money(b.buyerCash));
+    for(const [prefix,path] of [['seller',s],['bank',b]]){
+      put(prefix+'BuyerCostsTotal',money(path.buyerCosts));
+      put(prefix+'ClosingCostsTotal',money(path.sellingCosts));
+      let breakdown=money(path.down)+' down + '+money(path.buyerCosts)+' closing costs';
+      if(path.credit)breakdown+=' − '+money(path.credit)+' seller credit';
+      if(path.buyerPaysBroker)breakdown+=' + '+money(x.buyerBroker)+' buyer broker fee';
+      put(prefix+'BuyerCashBreakdown',breakdown);
+    }
     put('sellerCash',signedMoney(s.sellerCash));put('bankCash',signedMoney(b.sellerCash));
     put('sellerPI',money(s.period.monthly));put('sellerInterest',money(s.period.interest));
     put('sellerBalance',money(s.period.balance));
@@ -38,13 +47,12 @@
     put('sellerPaymentLabel',x.paymentType==='interestOnly'?'Interest received; principal due at payoff':'Principal + interest received');
     put('timelineClose',signedMoney(s.sellerCash));
     put('bankFinancingCost',money(b.financingCost));
-    put('heroGap',money(Math.abs(cashDifference)));
-    put('heroGapLabel',cashDifference>0?'less buyer cash needed at closing':cashDifference<0?'more buyer cash needed at closing':'difference in buyer cash at closing');
-    put('heroInterest',money(s.period.interest));
     put('sellerCreditApplied',val('sellerCredit')>s.buyerCosts?'Applied '+money(s.credit)+'; limited to buyer closing costs.':'');
     put('bankCreditApplied',val('bankCredit')>b.buyerCosts?'Applied '+money(b.credit)+'; limited to buyer closing costs.':'');
     const yearText=x.years===1?'year 1':'year '+x.years;
-    put('payoffText','In '+yearText+', the buyer would owe '+money(s.period.balance)+' in remaining principal. They may refinance into a traditional mortgage to pay it; approval and the future rate are not guaranteed. The balance remains due under the agreed terms.');
+    put('sellerInterestLabel','Interest you could receive through the balloon date');
+    put('interestNote','Assumes payments continue to the balloon date in '+yearText+'. An earlier payoff means less interest.');
+    put('payoffText','At the balloon date in '+yearText+', the buyer would owe '+money(s.period.balance)+' in remaining principal. They may refinance into a traditional mortgage to pay it; approval and the future rate are not guaranteed. The balance remains due under the agreed terms.');
     let title,detail;
     if(cashDifference>0){title='A buyer could bring '+money(cashDifference)+' less to closing.'}
     else if(cashDifference<0){title='Seller financing asks this buyer for '+money(-cashDifference)+' more upfront.'}
@@ -68,11 +76,13 @@
       {label:'Buyer cash · conventional',value:money(b.buyerCash)},
       {label:'Monthly housing · seller financing',value:money(s.monthly)},
       {label:'Monthly housing · conventional',value:money(b.monthly)},
+      {label:'Buyer closing costs · SF / conventional',value:money(s.buyerCosts)+' / '+money(b.buyerCosts)},
+      {label:'Your costs + credits · SF / conventional',value:money(s.sellingCosts)+' / '+money(b.sellingCosts)},
       {label:'Your cash at closing · seller financing',value:signedMoney(s.sellerCash)},
       {label:'Your cash at closing · conventional',value:signedMoney(b.sellerCash)},
-      {label:'Scheduled interest to you by payoff',value:money(s.period.interest)},
+      {label:'Interest through balloon date',value:money(s.period.interest)},
       {label:'Principal due at buyer payoff',value:money(s.period.balance)}
-    ],footnote:'Rates: seller '+val('sellerRate')+'%, conventional '+val('bankRate')+'%. Down: '+money(s.down)+' / '+money(b.down)+'. Buyer may refinance at payoff; approval is not guaranteed. Estimates exclude servicing, collection, sale taxes and time value of money.'};
+    ],footnote:'SF means seller financing. Buyer cash includes down payment, closing costs, credits and any buyer-paid broker fee. Your cash deducts entered selling costs, credits, broker fees and loan payoff. Buyer refinance is not guaranteed; early payoff reduces interest.'};
   }
   document.querySelectorAll('input,select').forEach(el=>el.addEventListener('input',render));
   document.querySelectorAll('[data-mode] button').forEach(button=>button.addEventListener('click',()=>{

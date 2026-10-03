@@ -14,7 +14,7 @@
       if(row.heading){ctx.fillStyle=accent;ctx.font='700 25px Arial';ctx.fillText(row.heading.toUpperCase(),76,y);y+=72;continue}
       ctx.fillStyle='#e5e5e8';ctx.fillRect(76,y-10,1048,2);
       ctx.fillStyle=muted;ctx.font='27px Arial';ctx.fillText(row.label,76,y+20);
-      ctx.fillStyle=dark;ctx.font='700 33px Arial';ctx.textAlign='right';ctx.fillText(String(row.value),1124,y+14);ctx.textAlign='left';y+=91;
+      ctx.fillStyle=dark;ctx.font='700 32px Arial';ctx.textAlign='right';ctx.fillText(String(row.value),1124,y+14);ctx.textAlign='left';y+=80;
     }
     ctx.fillStyle='#edf5ee';ctx.fillRect(76,1260,1048,185);
     ctx.fillStyle=muted;ctx.font='21px Arial';wrap(ctx,footnote,100,1289,1000,28);
